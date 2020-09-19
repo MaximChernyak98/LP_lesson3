@@ -22,12 +22,12 @@ def find_duplicates(list_of_students):
             num_duplicate[name] = 1
         else:
             num_duplicate[name] += 1
+    # key - name, value - number
     return num_duplicate
 
 
 for person, duplicate in find_duplicates(students).items():
     print(f'{person}: {duplicate}')
-
 
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторящееся имя.
@@ -44,16 +44,19 @@ students = [
 
 
 def find_mp_name(person_dict):
-    duplicates_sort_list = sorted(duplicates_dict.items(),
-                                  key=lambda v: v[1],
-                                  reverse=True)
-    return duplicates_sort_list[0][0], duplicates_sort_list[0][1]
+    duplicates_sort_list = sorted(
+        duplicates_dict.items(),
+        key=lambda v: v[1],
+        reverse=True
+    )
+    popular_name_f = duplicates_sort_list[0][0]
+    num_popular_f = duplicates_sort_list[0][1]
+    return popular_name_f, num_popular_f
 
 
 duplicates_dict = find_duplicates(students)
 popular_name, num_popular = find_mp_name(duplicates_dict)
 print(f'Most popular name - {popular_name}, number of found {num_popular}')
-
 
 # Задание 3
 # Есть список учеников в нескольких классах, нужно
@@ -121,16 +124,17 @@ def count_male_female(all_class):
                 else:
                     male_female_in_class['female'] += 1
             except KeyError:
-                print('There is no {name} in dictionare is_male')
+                print(f'There is no {name} in dictionare is_male')
         num_male_and_female.append(male_female_in_class)
     return num_male_and_female
 
 
 result = count_male_female(school)
 for each_class in result:
-    print(f"In class {each_class['class']} {each_class['female']} female "
-          f"and {each_class['male']} male")
-
+    p_class = each_class['class']
+    p_female = each_class['female']
+    p_male = each_class['male']
+    print(f"In class {p_class} {p_female} female and {p_male} male")
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс,
@@ -163,7 +167,11 @@ is_male = {
 result = count_male_female(school)
 sorted_by_male = sorted(result, key=lambda m: m['male'], reverse=True)
 sorted_by_female = sorted(result, key=lambda f: f['female'], reverse=True)
-print(f"Most boys in class {sorted_by_male[0]['class']} "
-      f"{sorted_by_male[0]['male']} boys")
-print(f"Most girls in class {sorted_by_female[0]['class']} "
-      f"{sorted_by_female[0]['female']} girls")
+
+p_male_class = sorted_by_male[0]['class']
+p_male_num = sorted_by_male[0]['male']
+p_female_class = sorted_by_female[0]['class']
+p_female_num = sorted_by_female[0]['female']
+
+print(f"Most boys in class {p_male_class} - {p_male_num} boys")
+print(f"Most girls in class {p_female_class} - {p_female_num} girls")

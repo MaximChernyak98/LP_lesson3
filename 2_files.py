@@ -8,15 +8,17 @@
 5. Сохраните результат в файл referat2.txt
 """
 # imports (std)
-import os
+import os, time
 
 # vaiables
-current_dir = os.path.dirname(__file__)
+current_dir = os.path.abspath(os.getcwd())
+file_to_search = 'referat.txt'
 
 
 def main():
     try:
-        with open(f'{current_dir}/referat.txt', 'r', encoding='utf-8') as referat:
+        path_to_referat = os.path.join(current_dir, 'referat.txt')
+        with open(path_to_referat, 'r', encoding='utf-8') as referat:
             text = referat.read()
             # counting the number of characters
             length = len(text)
@@ -27,10 +29,11 @@ def main():
             # replace points to exclamation point
             text_with_exc = text.replace('.', '!')
             # save changes in new file
-            with open(f'{current_dir}/referat2.txt', 'w', encoding='utf-8') as referat2:
+            path_to_new_referat = os.path.join(current_dir, 'referat2.txt')
+            with open(path_to_new_referat, 'w', encoding='utf-8') as referat2:
                 referat2.write(text_with_exc)
     except FileNotFoundError:
-        print('File not found, checkout file existense')
+        print(f'File not found {file_to_search}, checkout file existense')
 
 
 if __name__ == "__main__":

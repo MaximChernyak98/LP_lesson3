@@ -10,7 +10,7 @@ import locale
 locale.setlocale(locale.LC_TIME, 'ru_RU.UTF8')
 
 # variables
-date_to_parse = '2001/01/25 12:10:03.234567'
+date_to_parse = '20/01/25 12:10:03.234567'
 
 
 def print_date(in_date):
@@ -22,7 +22,7 @@ def print_date(in_date):
     print(yesterday)
     print(month_ago)
     # parse entered string to format
-    if type(in_date) == str:
+    if isinstance(in_date, str):
         try:
             print(date.datetime.strptime(in_date, '%y/%m/%d %H:%M:%S.%f'))
         except ValueError:
