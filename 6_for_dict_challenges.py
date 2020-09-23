@@ -43,7 +43,7 @@ students = [
 ]
 
 
-def find_mp_name(person_dict):
+def find_most_popular_name(person_dict):
     duplicates_sort_list = sorted(
         duplicates_dict.items(),
         key=lambda v: v[1],
@@ -55,7 +55,7 @@ def find_mp_name(person_dict):
 
 
 duplicates_dict = find_duplicates(students)
-popular_name, num_popular = find_mp_name(duplicates_dict)
+popular_name, num_popular = find_most_popular_name(duplicates_dict)
 print(f'Most popular name - {popular_name}, number of found {num_popular}')
 
 # Задание 3
@@ -131,10 +131,11 @@ def count_male_female(all_class):
 
 result = count_male_female(school)
 for each_class in result:
-    p_class = each_class['class']
-    p_female = each_class['female']
-    p_male = each_class['male']
-    print(f"In class {p_class} {p_female} female and {p_male} male")
+    result_class = each_class['class']
+    most_female_in_class = each_class['female']
+    most_male_in_class = each_class['male']
+    print(f"In class {result_class} {most_female_in_class} female and"
+          f" {most_male_in_class} male")
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс,
